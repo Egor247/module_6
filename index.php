@@ -49,7 +49,6 @@ if(!empty($_POST)){
     $telegrahpText = new TelegraphText($_POST['author_name'], date("Y-m-d H:i:s"));
     $telegrahpText -> storeText($_POST['author_name'], $_POST['title'], $_POST['text'], __DIR__ .'/array.txt', date("Y-m-d H:i:s"), $textStorage);
     $telegrahpText -> editText($_POST['author_name'], $_POST['txt_edit_title'], $_POST['txt_edit_text'], __DIR__ .'/array.txt', date("Y-m-d H:i:s"), $textStorage);
-    
     var_dump($textStorage);
     $telegrahpText -> loadText($_POST['author_name'], $_POST['title'], $_POST['text'], __DIR__ .'/array.txt', date("Y-m-d H:i:s"));
 
