@@ -22,7 +22,7 @@ class TelegraphText
 
     public function loadText(&$author, &$title, &$text, $slug, $published) 
     {
-        if (filesize(__DIR__ .'/array.txt') > 0 && !empty($_POST)) {
+        if (filesize(__DIR__ .'/array.txt') > 0) {
             $data = file_get_contents($slug);
             $readingFile = unserialize($data);
             print_r($readingFile);
