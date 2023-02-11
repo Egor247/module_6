@@ -3,11 +3,16 @@ class TelegraphText
 {
     public $title, $text, $author, $published, $textStorage = [];
     public $slug = 'array.txt';
+
+
     public function __construct($author, $slug)
     {
+        $published = date("Y-m-d H:i:s");
+        $this->published = new dateTime($published);
         $this->author = $author;
         $this->slug = $slug;
-        $this->published = date("Y-m-d H:i:s");
+
+
     }
 
     public function storeText($author, $title, $text, $slug, $published, &$textStorage)
@@ -30,10 +35,11 @@ class TelegraphText
        
     }
     
-    public function editText($author, $title, $text, $slug, $published, &$textStorage)
+    public function editText($title, $text, $slug, &$textStorage)
     {
-         $textStorage = ['title' => $title, 'text' => $text, 'author' => $author, 'published' => $published];
-         $data = serialize($textStorage);
+        $textStorage['title'] = $title;
+        $textStorage['text'] = $text;
+        $data = serialize($textStorage);
          file_put_contents($slug, $data);
     }
 }
@@ -47,7 +53,7 @@ $telegraphText = new TelegraphText($authorName, 'array.txt');
 $telegraphText -> storeText($authorName, $title, $text,  __DIR__.'/array.txt', date("Y-m-d H:i:s"), $textStorage);
 $editTitle = readline("Введите новый заголовок:");
 $editText = readline("Введите изменённый текст:");
-$telegraphText -> editText($authorName, $editTitle, $editText, __DIR__.'/array.txt', date("Y-m-d H:i:s"), $textStorage);
+$telegraphText -> editText($editTitle, $editText, __DIR__.'/array.txt', $textStorage);
 
 var_dump($textStorage);
 $telegraphText -> loadText($authorName, __DIR__.'/array.txt');
