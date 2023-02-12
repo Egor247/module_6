@@ -40,7 +40,7 @@ class TelegraphText
         $textStorage['title'] = $title;
         $textStorage['text'] = $text;
         $data = serialize($textStorage);
-         file_put_contents($slug, $data);
+        file_put_contents($slug, $data);
     }
 }
 
